@@ -1,0 +1,1 @@
+zz_KOMENTARJI.d zz_KOMENTARJI.o: .././zz_KOMENTARJI.c

@@ -1,0 +1,496 @@
+
+//FUSEBITS E:FD, H:D9, L:FF
+//fusebits tiny44 DF 62
+///////////////////////////
+///////////////////////////
+///////////////////////////
+//Gregor Hrastnik, 15.3.2016
+///////////////////////////
+
+
+#include <EEPROM.h>
+#include <SoftwareSerial.h>
+#include <MIDI.h>
+#include "Zecer_stop_mgr.h"
+#include "global_variables.h"
+#include "global_methods.h"
+#include <Timer.h>
+#include <MemoryFree.h>
+#include <Encoder.h>
+//#include "SD_mgr.h"
+//#include <UTFT.h>
+//#include "LCD_mgr.h"
+#include "Definitions_settings.h"
+#include "menu_mgr.h"
+#include "PROGMEM_labels.h"
+#include "SPIEEP.h"
+
+//
+//#include <SPI.h>
+//#include "SpiRAM.h"
+
+Timer t;
+Timer timer_input;
+Zecer_stop_mgr Z_S_mgr;
+bool _lock = false;
+
+//LCD_mgr Display_mgr;
+
+#define EXCLUDE_DISPLAY1
+
+#ifndef EXCLUDE_DISPLAY
+menu_mgr MENU_mgr;
+#endif
+
+
+int numb=0;
+int counter_test;
+float previous_millis;
+
+byte lock_=false;
+
+void on_timer_check()
+{
+	if(lock_==false)
+	lock_=true;
+	else
+
+	
+
+	
+	lock_=false;
+}
+
+void doSomething()
+{
+	
+	//	Z_S_mgr.keyboardCheck();
+
+		
+		DEBUG_print(F("refresh "));
+		DEBUG_print(numb);
+		DEBUG_println(F(" Hz "));
+		DEBUG_println(millis()-previous_millis);
+		numb=0;
+		previous_millis=millis();
+		
+		//calculate_free_RAM(0);
+	
+	
+	
+	return;
+	DEBUG_print(F("refresh "));
+	DEBUG_print(numb);
+	DEBUG_println(F(" Hz"));
+	numb=0;
+	//return;
+	//DEBUG_println(F("ok"));
+	//calculate_free_RAM(counter_test+100);
+	counter_test++;
+	return;
+	for (int x = 0; x < 90; x++)
+	{
+		if (G_bit(k_MAN_I_H,x))
+		return;
+		if (G_bit(k_MAN_II_H,x))
+		return;
+		if (G_bit(k_MAN_III_H,x))
+		return;
+		//if (k_MAN_IV[x])
+		return;
+		//if (k_MAN_V[x])
+		return;
+		if (G_bit(k_PED,x))
+		return;
+		
+	}
+
+	MIDI_sender.mute_all_sounds();
+	//
+	//Serial.print(F("->"));
+	//Serial.print(numb);
+	//Serial.print(F(" Hz"));
+
+
+	//Serial.print(F(" ::free mem-> "));
+	//Serial.print(freeMemory());
+	//Serial.println(F(" Byte"));
+
+
+
+
+	//DEBUG_print(F("MUTE ALL"));
+	////DEBUG_print(numb);
+	////DEBUG_print(F(" Hz"));
+
+
+	////DEBUG_print(F(" ::free mem-> "));
+	////DEBUG_print(freeMemory());
+	////DEBUG_println(F(" Byte"));
+	//numb = 0;
+	//VPtr<Z_S_mgr, SDVAlloc> ms = valloc.alloc<Z_S_mgr>();
+	//  VPtr<char, SPIRAMVAlloc> str = valloc.alloc<char>(10000);
+
+}
+//extern SoftwareSerial softSerial(A14, A15); // RX, TX
+
+
+const GPIO_pin_t DATA_164_keyboard_FAST = DP7;
+const GPIO_pin_t CLK_164_keyboard_FAST = DP3;
+const GPIO_pin_t DATA_165_keyboard_FAST = DP8;
+const GPIO_pin_t LOAD_165_keyboard_FAST = DP9;
+const GPIO_pin_t CLK_pin_FAST = DP2;
+
+const uint32_t ramSize = 0x1FFFF;           // 128K x 8 bit
+const byte LED = 13;
+
+char buffer[] = {"ABCDEFGHIJ"};
+char buffer2[sizeof(buffer)];
+
+//SpiRAM sRam(A6);
+
+
+#ifdef testram
+void dumpsRam(uint32_t addr, uint32_t length)
+{
+	// block to 10
+	addr = addr / 10 * 10;
+	length = (length + 9)/10 * 10;
+
+	byte b = sRam.readByte(addr);
+	for (int i = 0; i < length; i++)
+	{
+		if (addr % 10 == 0)
+		{
+			//Serial.println();
+			//Serial.print(addr, HEX);
+			//Serial.print(":\t");
+		}
+		//Serial.print(b, HEX);
+		b = sRam.readByte(++addr);
+	//	Serial.print("\t");
+	}
+	//Serial.println();
+}
+#endif
+SPIEEP eep(32, 128, 32768);
+//SPIEEP eep(32, 64, 16384);
+void setup() {
+
+
+pinMode(A7,OUTPUT);
+
+	#ifndef EXCLUDE_SPIRAM
+	//	valloc.start();
+	#endif
+
+	//Serial2.begin(115200);
+	//Serial2.println(F("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^RESTART hard serial"));
+	const char compile_date[] = __DATE__ " " __TIME__" ";
+	softSerial.begin(1000000);
+	
+	softSerial.println(F("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^RESTART"));
+	softSerial.print(F("compile date: "));
+	softSerial.println(compile_date);
+	calculate_free_RAM(0);
+	//Serial.println(F("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"));
+	init_global_values();
+	
+	 eep.begin_spi(A7);
+	
+	byte b;
+
+	b = eep.read(0x0010);
+	b++;
+	if (!eep.write(0x0010, b)) {
+		softSerial.println("Trouble writing to EEPROM address 0x0010!");
+	}
+	else
+		softSerial.println("ok");
+	
+	 softSerial.println("Ram Tests Begin.");
+	 
+	 
+	 //SPI.setClockDivider(SPI_CLOCK_DIV8);
+	 
+	 //softSerial.println("\r\nFill Memory with 0xFF.");
+	 //sRam.fillBytes(0,0xFF,ramSize);
+	 //dumpsRam(0,100);
+	 //dumpsRam(ramSize - 100, 100);
+//
+	 //softSerial.println("\r\nFill Memory with 0xAA.");
+	 //sRam.fillBytes(0,0xAA,ramSize);
+	 //dumpsRam(0,100);
+	 //dumpsRam(ramSize - 100, 100);
+
+	 //softSerial.println("\r\nFill Memory with Buffer.");
+	 //for (uint32_t x = 0; x < ramSize - (sizeof(buffer) - 1); x += sizeof(buffer) - 1){
+		 //sRam.writeBuffer(x, buffer, sizeof(buffer) - 1);
+	 //}
+	 //dumpsRam(0,100);
+	 //dumpsRam(ramSize - 100, 100);
+//
+	 //softSerial.println("\r\nRead Buffer.");
+	 //sRam.readBuffer(0,buffer2,sizeof(buffer2) - 1);
+	 //softSerial.println(buffer2);
+	 //sRam.readBuffer(5,buffer2,sizeof(buffer2) - 1);
+	 //softSerial.println(buffer2);
+//
+	 //softSerial.println("\r\nWrite byte.");
+	 //for (uint32_t x = 0; x <= ramSize; x++){
+		 //if((x % 1024) == 0) digitalWrite(LED,!digitalRead(LED));
+		 //sRam.writeByte(x, (byte) x / 10);
+	 //}
+	 //dumpsRam(0,100);
+	 //dumpsRam(ramSize - 100, 100);
+//
+	 //softSerial.println("\r\nRam Tests Finished.");
+	//
+	
+	
+	
+	delay(100000);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	int tickEvent = t.every(1000, doSomething);
+	int tickEvent1 = timer_input.every(20, on_timer_check);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//pinMode2(A13, OUTPUT);
+	//pinMode2(A0,INPUT);
+	//pinMode2(A1,INPUT);
+	//pinMode2(A2,INPUT);
+	//pinMode2(A3,INPUT);
+	//pinMode2(A4,INPUT);
+	//
+	//while (true)
+	//{
+	//DEBUG_print("A0 " );
+	//DEBUG_println(analogRead(A0));
+	//DEBUG_print("A1 " );
+	//DEBUG_println(analogRead(A1));
+	//DEBUG_print("A2 " );
+	//DEBUG_println(analogRead(A2));
+	//DEBUG_print("A3 " );
+	//DEBUG_println(analogRead(A3));
+	//DEBUG_print("A4 " );
+	//DEBUG_println(analogRead(A4));
+	//
+	//delay(250);
+	//}
+	//
+	//
+	//return;
+
+	if(1==1)
+	{
+		//poèasnejši naèin
+		/*
+		pinMode2(DATA_164_keyboard, OUTPUT);
+		pinMode2(CLK_164_keyboard, OUTPUT);
+	
+		pinMode2(DATA_165_keyboard, INPUT);
+		pinMode2(LOAD_165_keyboard, OUTPUT);
+		pinMode2(CLK_pin, OUTPUT);
+		*/
+		
+		pinMode(STATUS_LED,OUTPUT);
+		digitalWrite(STATUS_LED,HIGH);
+		pinMode(PWR_LED,OUTPUT);
+		digitalWrite(PWR_LED,LOW);
+		
+		pinMode2f(DATA_164_keyboard_FAST, OUTPUT);
+		pinMode2f(CLK_164_keyboard_FAST, OUTPUT);
+		//165
+		pinMode2f(DATA_165_keyboard_FAST, INPUT);
+		pinMode2f(LOAD_165_keyboard_FAST, OUTPUT);
+		pinMode2f(CLK_pin_FAST, OUTPUT);
+		
+		
+		
+		
+		//595
+		//pinMode2(load595Pin, OUTPUT);
+		//pinMode2(data595Pin, OUTPUT);
+		//shared pin
+		
+		pinMode2(CLK_stop_pin, OUTPUT);
+		pinMode2(CLK_stop_pin_r, OUTPUT);
+
+
+		//pinMode2(44, OUTPUT);
+		pinMode2(CLK_ZECER, OUTPUT);
+		pinMode2(DATA_165_Z, INPUT);
+		pinMode2(LOAD_165_Z, OUTPUT);
+
+		pinMode2(DATA_595_Z, OUTPUT);
+		pinMode2(LOAD_595_Z, OUTPUT);
+		
+
+		
+		//STOPS
+		pinMode2(DATA_165_R, INPUT);
+		pinMode2(LOAD_165_R, OUTPUT);
+
+		pinMode2(DATA_595_R, OUTPUT);
+		pinMode2(LOAD_595_R, OUTPUT);
+
+		pinMode2(DATA_165_R_r, INPUT);
+		pinMode2(LOAD_165_R_r, OUTPUT);
+
+		pinMode2(DATA_595_R_r, OUTPUT);
+		pinMode2(LOAD_595_R_r, OUTPUT);
+
+		pinMode2(DATA_165_pedal, INPUT_PULLUP);
+		pinMode2(LOAD_165_pedal, OUTPUT);
+		pinMode2(CLOCK_pedal, OUTPUT);
+		
+		
+		pinMode2(ENCODER_PIN_1, INPUT_PULLUP);
+		pinMode2(ENCODER_PIN_2, INPUT_PULLUP);
+		pinMode2(ENCODER_PIN_BACK, INPUT_PULLUP);
+		pinMode2(ENCODER_PIN_ENTER, INPUT_PULLUP);
+
+		pinMode2(MASTER_VOLUME_PIN, INPUT_PULLUP);
+		pinMode2(GAS1_PIN, INPUT_PULLUP);
+		pinMode2(GAS2_PIN, INPUT_PULLUP);
+
+
+		manubri_na_nulo();
+
+		byte temp_mem[10];
+		for (int x = 0; x < 10; x++)
+		{
+			temp_mem[x] = 0;
+		}
+
+		manubri_na_nulo();
+		
+		
+		#ifndef EXCLUDE_DISPLAY
+		MENU_mgr.menu_init();
+		#endif
+		
+
+		if (digitalRead2(ENCODER_PIN_ENTER) == false && digitalRead2(ENCODER_PIN_BACK) == false || EEPROM.read(29)!=42)//reset na nulo
+		{
+
+			#ifdef EEPROM_CANCEL_first_boot
+			//for (int x = 30; x < 4000; x++)
+			//{
+			//EEPROM.write(x, 0);//+1 zato ker je na prvem mestu glasnost registra
+			//}
+			#endif // EEPROM_CANCEL_first_boot
+
+
+			EEPROM.write(29, 42);
+			DEBUG_println(F("::EEPROM prepare"));
+			EEPROM.write(add_VALUE_TRANSPOSE, 12);
+			EEPROMWriteLong(add_vol_min, analogRead(MASTER_VOLUME_PIN));//da lahko nastaviš range  ;)
+			EEPROMWriteLong(add_vol_max, analogRead(MASTER_VOLUME_PIN));
+
+			EEPROMWriteLong(add_gas1_min, analogRead(GAS1_pin));
+			EEPROMWriteLong(add_gas1_max, analogRead(GAS1_pin));
+
+			EEPROMWriteLong(add_gas2_min, analogRead(GAS2_pin));
+			EEPROMWriteLong(add_gas2_max, analogRead(GAS2_pin));
+
+
+			EEPROM.write(ADD_menu_b1_equalizer_gain_low, 0x60);
+			EEPROM.write(ADD_menu_b1_equalizer_gain_low_mid, 0x38);
+			EEPROM.write(ADD_menu_b1_equalizer_gain_high_mid, 0x38);
+			EEPROM.write(ADD_menu_b1_equalizer_gain_high, 0x60);
+
+			EEPROM.write(ADD_menu_b1_equalizer_band_freq_low_band_0_800, 0x0A);
+			EEPROM.write(ADD_menu_b1_equalizer_band_freq_low_mid_band_0_2500, 0x18);
+			EEPROM.write(ADD_menu_b1_equalizer_band_freq_high_mid__band_60_10700, 0x68);
+			EEPROM.write(ADD_menu_b1_equalizer_band_freq_high_band_1000_5800, 0x7F);
+
+			EEPROM.write(ADD_menu_b1_equalizer_Q_low, 0x2);
+			EEPROM.write(ADD_menu_b1_equalizer_Q_low_mid, 0x2);
+			EEPROM.write(ADD_menu_b1_equalizer_Q_high_mid, 0x2);
+			EEPROM.write(ADD_menu_b1_equalizer_Q_high, 0x2);
+
+			EEPROM.write(add_VALUE_tremulnat1, 30);
+			EEPROM.write(add_VALUE_tremulnat2, 30);
+
+			EEPROM.write(add_VALUE_predelay_time, 15);
+			EEPROM.write(add_VALUE_REVERB, 57);
+			//EEPROM.write(add_VALUE_master_level, 126);
+			EEPROM.write(add_VALUE_pre_LPF, 7);
+			EEPROM.write(add_VALUE_reverb_time_ms, 113);
+			EEPROM.write(add_VALUE_reverb_type, 4);
+			EEPROM.write(add_VALUE_hist_temp, 0);
+			EEPROM.write(add_VALUE_delay_feedback, 0);
+		}
+		Z_S_mgr.Zecer_stop_mgr_init();	
+	}
+	Z_S_mgr.read_master_volume();
+	MIDI_sender.setup_stop_disposition(0,1);
+	
+byte tmp_var = EEPROM.read(add_VALUE_reverb_type);
+if (tmp_var > 7)
+tmp_var = 3;
+delay(2000);
+MENU_mgr.check_reverb(H_reverb_type_,tmp_var);
+	
+}
+
+
+
+byte count_int = 0;
+
+//int temp_var = 0;
+bool firstinit = true;
+
+
+void loop() {
+
+t.update();
+//timer_input.update();
+numb++;
+//Z_S_mgr.read_Keyboards();
+
+
+	#ifndef EXCLUDE_DISPLAY
+	MENU_mgr.display_menu();
+	#endif
+
+	Z_S_mgr.keyboardCheck();
+
+//	Z_S_mgr.inputCheck();
+	Z_S_mgr.read_MIDIC_pedal();
+	
+	Z_S_mgr.inputCheck();
+	Z_S_mgr.read_master_volume();
+	Z_S_mgr.read_gas_pedal();
+
+
+	
+	
+	
+	//display_menu(); //TODO
+
+}
+
