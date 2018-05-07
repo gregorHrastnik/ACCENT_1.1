@@ -50,7 +50,6 @@ Sketch.d Sketch.o: .././Sketch.cpp \
  ..\\..\ArduinoCore\include\variants\mega/pins2_arduino.h \
  .././global_variables.h .././Definitions_pins.h \
  .././Definitions_settings.h \
- ..\\..\ArduinoCore\include\libraries\adafruit_neopixel-master/Adafruit_NeoPixel.h \
  ..\\..\ArduinoCore\include\libraries\spieep/SPIEEP.h \
  .././SpiRam_Extended.h ..\\..\ArduinoCore\include\libraries\SPI/SPI.h \
  .././Stop.h .././global_methods.h .././SD_mgr.h .././SD_lib/SD.h \
@@ -176,8 +175,6 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 .././Definitions_pins.h:
 
 .././Definitions_settings.h:
-
-..\\..\ArduinoCore\include\libraries\adafruit_neopixel-master/Adafruit_NeoPixel.h:
 
 ..\\..\ArduinoCore\include\libraries\spieep/SPIEEP.h:
 

@@ -43,7 +43,6 @@ Zecer_stop_mgr.d Zecer_stop_mgr.o: .././Zecer_stop_mgr.cpp \
  .././Definitions_settings.h \
  ..\\..\ArduinoCore\include\libraries\SoftwareSerial/SoftwareSerial.h \
  ..\\..\ArduinoCore\include\core/Stream.h \
- ..\\..\ArduinoCore\include\libraries\adafruit_neopixel-master/Adafruit_NeoPixel.h \
  ..\\..\ArduinoCore\include\libraries\spieep/SPIEEP.h \
  .././SpiRam_Extended.h ..\\..\ArduinoCore\include\libraries\SPI/SPI.h \
  .././Stop.h .././global_methods.h .././SD_mgr.h .././SD_lib/SD.h \
@@ -64,6 +63,7 @@ Zecer_stop_mgr.d Zecer_stop_mgr.o: .././Zecer_stop_mgr.cpp \
  ..\\..\ArduinoCore\include\libraries\EEPROM/EEPROM.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\pgmspace.h \
  .././PROGMEM_labels.h \
+ ..\\..\ArduinoCore\include\libraries\adafruit_neopixel-master/Adafruit_NeoPixel.h \
  ..\\..\ArduinoCore\include\libraries\memoryfree-master/MemoryFree.h
 
 .././zecer_stop_mgr.h:
@@ -162,8 +162,6 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 
 ..\\..\ArduinoCore\include\core/Stream.h:
 
-..\\..\ArduinoCore\include\libraries\adafruit_neopixel-master/Adafruit_NeoPixel.h:
-
 ..\\..\ArduinoCore\include\libraries\spieep/SPIEEP.h:
 
 .././SpiRam_Extended.h:
@@ -229,5 +227,7 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\pgmspace.h:
 
 .././PROGMEM_labels.h:
+
+..\\..\ArduinoCore\include\libraries\adafruit_neopixel-master/Adafruit_NeoPixel.h:
 
 ..\\..\ArduinoCore\include\libraries\memoryfree-master/MemoryFree.h:

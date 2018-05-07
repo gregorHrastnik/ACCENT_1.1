@@ -49,7 +49,6 @@ global_methods.d global_methods.o: .././global_methods.cpp \
  .././Definitions_settings.h \
  ..\\..\ArduinoCore\include\libraries\SoftwareSerial/SoftwareSerial.h \
  ..\\..\ArduinoCore\include\core/Stream.h \
- ..\\..\ArduinoCore\include\libraries\adafruit_neopixel-master/Adafruit_NeoPixel.h \
  ..\\..\ArduinoCore\include\libraries\spieep/SPIEEP.h \
  .././SpiRam_Extended.h .././Zecer_stop_mgr.h .././Button_Z.h \
  .././MIDI_mgr.h .././Stop_mgr.h .././Zecer_mgr.h .././menu_mgr.h \
@@ -185,8 +184,6 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 ..\\..\ArduinoCore\include\libraries\SoftwareSerial/SoftwareSerial.h:
 
 ..\\..\ArduinoCore\include\core/Stream.h:
-
-..\\..\ArduinoCore\include\libraries\adafruit_neopixel-master/Adafruit_NeoPixel.h:
 
 ..\\..\ArduinoCore\include\libraries\spieep/SPIEEP.h:
 

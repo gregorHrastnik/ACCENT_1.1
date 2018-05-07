@@ -43,7 +43,6 @@ Zecer_mgr.d Zecer_mgr.o: .././Zecer_mgr.cpp .././Zecer_mgr.h \
  .././Definitions_settings.h \
  ..\\..\ArduinoCore\include\libraries\SoftwareSerial/SoftwareSerial.h \
  ..\\..\ArduinoCore\include\core/Stream.h \
- ..\\..\ArduinoCore\include\libraries\adafruit_neopixel-master/Adafruit_NeoPixel.h \
  ..\\..\ArduinoCore\include\libraries\spieep/SPIEEP.h \
  .././SpiRam_Extended.h ..\\..\ArduinoCore\include\libraries\SPI/SPI.h \
  .././Stop.h .././Button_Z.h .././global_methods.h .././SD_mgr.h \
@@ -55,7 +54,7 @@ Zecer_mgr.d Zecer_mgr.o: .././Zecer_mgr.cpp .././Zecer_mgr.h \
  .././MIDI_mgr.h .././Stop_mgr.h .././menu_mgr.h \
  ..\\..\ArduinoCore\include\libraries\utft/UTFT.h \
  ..\\..\ArduinoCore\include\libraries\utft/hardware/avr/HW_AVR_defines.h \
- .././custom_menu.h ..\\..\ArduinoCore\include\libraries\EEPROM/EEPROM.h
+ .././custom_menu.h
 
 .././Zecer_mgr.h:
 
@@ -151,8 +150,6 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 
 ..\\..\ArduinoCore\include\core/Stream.h:
 
-..\\..\ArduinoCore\include\libraries\adafruit_neopixel-master/Adafruit_NeoPixel.h:
-
 ..\\..\ArduinoCore\include\libraries\spieep/SPIEEP.h:
 
 .././SpiRam_Extended.h:
@@ -200,5 +197,3 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 ..\\..\ArduinoCore\include\libraries\utft/hardware/avr/HW_AVR_defines.h:
 
 .././custom_menu.h:
-
-..\\..\ArduinoCore\include\libraries\EEPROM/EEPROM.h:

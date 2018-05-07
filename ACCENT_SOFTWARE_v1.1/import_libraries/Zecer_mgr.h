@@ -12,8 +12,6 @@
 	#include "WProgram.h"
 #endif
 
-#define SETTER_ALL_INIT_NUM 87
-
 class Zecer_mgr
 {
 

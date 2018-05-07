@@ -41,11 +41,12 @@ bool _writeBit_normal(byte variable[], int position, bool state);
 bool _readBit_load(byte variable[], int position);
 bool _readBit_stop(byte variable[], int position);
 bool _writeBit_stop(byte variable[], int position, bool state);
-//byte get_map_tabela_zecer(int position);
-//byte get_map_Z_buttn_id(int position);
+byte get_map_tabela_zecer(int position);
+byte get_map_Z_buttn_id(int position);
 byte get_map_tabela_Z(int position);
 byte get_key_map(int position);
-
+byte read_map_setter(int position);
+byte read_map_setter(int position);
 
 bool write_mem(int _mem_location, byte *variable);
 void setTheme(int theme);

@@ -4,7 +4,7 @@
 
 #include "Definitions_settings.h"
 #include "SoftwareSerial.h"
-#include "Adafruit_NeoPixel.h"
+
 
 //#include <Arduino.h>
 //#include <virtmem.h>
@@ -26,7 +26,7 @@
 #define  NAVADNA_REGISTRACIJA
 #define STOP_num  48
 #define  STOP_type  LED_MANUBRI
-#define ZECER_num  24
+#define ZECER_num  32
 #define GAS1_pin A13
 #define GAS2_pin A14
 #define stop_R_num 8
@@ -50,10 +50,7 @@
 
 #endif // _RODGERS
 
-#ifdef RGB_LED_OUTPUT
-extern Adafruit_NeoPixel RGB_STOP1_OUT;//= Adafruit_NeoPixel(STOP_num, 12, NEO_GRB + NEO_KHZ800);
-extern Adafruit_NeoPixel RGB_SETTER_OUT;// = Adafruit_NeoPixel(STOP_num, DATA_595_Z, NEO_GRB + NEO_KHZ800);
-#endif
+
 
 #ifndef EXCLUDE_SPIRAM
 //using namespace virtmem;

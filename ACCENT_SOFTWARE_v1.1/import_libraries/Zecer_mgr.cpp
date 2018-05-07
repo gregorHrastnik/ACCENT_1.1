@@ -5,8 +5,6 @@
 #include "Zecer_mgr.h"
 #include "arduino2.h"
 #include "global_methods.h"
-#include "EEPROM.h"
-
 
 
 void Zecer_mgr::link_id(byte stop_name, byte connect_to_id)//univerzalno vnašanje registrov, id v tabeli pridobi preko serial monitorja
@@ -293,10 +291,6 @@ void Zecer_mgr::Zecer_mgr_init(void(*on_event_B)(Button_z*,bool))
 		link_tab[i] = 200;
 	}
 
-
-
-calculate_free_RAM(111);
-
 	add_buttn(new Button_z(BUTTN_DUMMY, 0, class_ON_OFF,on_event_B));
 	add_buttn(new Button_z(BUTTN_1, 100, class_COMBINATION,on_event_B));
 	add_buttn(new Button_z(BUTTN_2, 110, class_COMBINATION,on_event_B));
@@ -386,17 +380,17 @@ calculate_free_RAM(111);
 	add_buttn(new Button_z(BUTTN_BASS, noMEM , class_ON_OFF,on_event_B));
 	add_buttn(new Button_z(BUTTN_MELODY, noMEM , class_ON_OFF,on_event_B));
 	
-	//_BUTTNS[COM_MAN_II_2_] = new Button_z(COM_MAN_II_2_, 490,  class_FIX_COMBINATION_MAN_2,on_event_B);
+	_BUTTNS[COM_MAN_II_2_] = new Button_z(COM_MAN_II_2_, 490,  class_FIX_COMBINATION_MAN_2,on_event_B);
 	//add_buttn(new Button_z(COM_MAN_II_2_, 490,  class_FIX_COMBINATION_MAN_2,on_event_B));
 
 	set_disposition(0);
-calculate_free_RAM(113);
+
 }
 
 
 void Zecer_mgr::add_buttn(Button_z* buttn)
 {
-	//DEBUG_println(buttn->get_id());
+	//	DEBUG_println(buttn->get_id());
 	_BUTTNS[buttn->get_id()] = buttn;
 }
 
@@ -407,7 +401,7 @@ Button_z* Zecer_mgr::id(int id)
 
 Button_z* Zecer_mgr::linked_id(int buttn_name)
 {
-	if(buttn_name>99)
+	if(buttn_name>120)
 	{
 		DEBUG_println(F("error!"));
 		return _BUTTNS[BUTTN_DUMMY];
@@ -419,13 +413,7 @@ Button_z* Zecer_mgr::linked_id(int buttn_name)
 		//DEBUG_println(F("dummy"));
 		return _BUTTNS[BUTTN_DUMMY];
 	}
-	if(_BUTTNS[link_tab[buttn_name]]!=NULL)
 	return _BUTTNS[link_tab[buttn_name]];
-	else
-	{
-			DEBUG_println(F("BUG ZECER!"));
-		return _BUTTNS[BUTTN_DUMMY];
-	}
 }
 //void Zecer_mgr::temp_set_outArray(byte *Array)
 //{
@@ -495,75 +483,36 @@ void Zecer_mgr::read_input()
 	
 	
 	//digitalWrite2(LOAD_165_STOPS1, LOW);
-	//
+//
 	//for (int i = ZECER_num - 1; i >= 0; i--)
 	//{
-	//digitalWrite2(CLK_STOPS1, 0);
-	//
-	//if (link_tab[get_map_tabela_Z(i)] != 200)
-	//{
-	//
-	//if (linked_id(get_map_tabela_Z(i))->get_out_state() == true)
-	//{
-	////DEBUG_print(F("1"));
-	//digitalWrite2(MOSI_595_STOPS1, HIGH);
-	//}
-	//else
-	//{
-	////DEBUG_print(F("0"));
-	//digitalWrite2(MOSI_595_STOPS1, LOW);
-	//}
-	//}
-	//else
-	//{
-	//digitalWrite2(MOSI_595_STOPS1, LOW);
-	//}
-	//
-	//digitalWrite2(CLK_STOPS1, 1);
+		//digitalWrite2(CLK_STOPS1, 0);
+//
+		//if (link_tab[get_map_tabela_Z(i)] != 200)
+		//{
+			//
+			//if (linked_id(get_map_tabela_Z(i))->get_out_state() == true)
+			//{
+				////DEBUG_print(F("1"));
+				//digitalWrite2(MOSI_595_STOPS1, HIGH);
+			//}
+			//else
+			//{
+				////DEBUG_print(F("0"));
+				//digitalWrite2(MOSI_595_STOPS1, LOW);
+			//}
+		//}
+		//else
+		//{
+			//digitalWrite2(MOSI_595_STOPS1, LOW);
+		//}
+//
+		//digitalWrite2(CLK_STOPS1, 1);
 	//}
 	//digitalWrite2(LOAD_165_STOPS1, HIGH);
 	//
 	//
 	//return;
-
-	//DEBUG_STRING_println("LOAD REFRESH STOPS");
-
-
-
-	#ifdef RGB_LED_OUTPUT
-return;
-	for (int c= 0; c < 20; c++)
-	{
-		
-		//
-		//if (link_tab[i] != 200)
-		//{
-			//if (true == true)
-			//{
-				////Z_S_mgr.
-				//Z_S_mgr.RGB_SETTER_OUT.setPixelColor(i, Z_S_mgr.RGB_SETTER_OUT.Color(EEPROM.read(ADD_menu_b8_theme_R)*2,EEPROM.read(ADD_menu_b8_theme_G)*2,EEPROM.read(ADD_menu_b8_theme_B)*2));
-				////Z_S_mgr.RGB_SETTER_OUT.setPixelColor(i, Z_S_mgr.RGB_SETTER_OUT.Color(60,20,40));
-			//}
-			//else
-			//{
-				////Z_S_mgr.RGB_SETTER_OUT
-				//
-				//Z_S_mgr.RGB_SETTER_OUT.setPixelColor(i, Z_S_mgr.RGB_SETTER_OUT.Color(0,0,0));
-			//}
-		//}
-		//else
-		//Z_S_mgr.RGB_SETTER_OUT.setPixelColor(i, Z_S_mgr.RGB_SETTER_OUT.Color(0,0,0));
-
-	RGB_SETTER_OUT.setPixelColor(c, RGB_SETTER_OUT.Color(EEPROM.read(ADD_menu_b8_theme_R)*2,EEPROM.read(ADD_menu_b8_theme_G)*2,EEPROM.read(ADD_menu_b8_theme_B)*2));
-
-
-	}
-	//RGB_SETTER_OUT.show();
-	//calculate_free_RAM(44);
-return;
-	#else
-
-
 
 	digitalWrite2(LOAD_595_Z, LOW);
 
@@ -593,7 +542,6 @@ return;
 		digitalWrite2(CLK_ZECER, 1);
 	}
 	digitalWrite2(LOAD_595_Z, HIGH);
-	#endif
 
 
 	if(digitalRead2(INPUT_FOOT_PISTON_UP)==false&&buttn_prev_plus==false)
@@ -619,7 +567,7 @@ return;
 	}
 	else if(digitalRead2(INPUT_FOOT_PISTON_DOWN)==true)
 	{
-		buttn_prev_minus=false;
+		buttn_prev_minus=false;	
 	}
 	else
 	{

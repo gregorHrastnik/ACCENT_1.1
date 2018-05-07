@@ -66,10 +66,6 @@ bool extern_eeprom_ok=false;
 	//name+=String(num_count);
 	//return name;
 //}
-#ifdef RGB_LED_OUTPUT
-extern Adafruit_NeoPixel RGB_STOP1_OUT = Adafruit_NeoPixel(STOP_num, 12, NEO_GRB + NEO_KHZ800);
-extern Adafruit_NeoPixel RGB_SETTER_OUT = Adafruit_NeoPixel(ZECER_num, DATA_595_Z, NEO_GRB + NEO_KHZ800);
-#endif
 
 extern SPIEEP exEEPROM(16, 128, 65536);
 extern SpiRAM exRAM(SPI_CLOCK_DIV4, A6, CHIP_23LC1024);

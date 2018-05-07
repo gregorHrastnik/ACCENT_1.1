@@ -44,7 +44,6 @@ Button_Z.d Button_Z.o: .././Button_Z.cpp .././Button_Z.h \
  .././Definitions_settings.h \
  ..\\..\ArduinoCore\include\libraries\SoftwareSerial/SoftwareSerial.h \
  ..\\..\ArduinoCore\include\core/Stream.h \
- ..\\..\ArduinoCore\include\libraries\adafruit_neopixel-master/Adafruit_NeoPixel.h \
  ..\\..\ArduinoCore\include\libraries\spieep/SPIEEP.h \
  .././SpiRam_Extended.h ..\\..\ArduinoCore\include\libraries\SPI/SPI.h \
  .././global_methods.h .././SD_mgr.h .././SD_lib/SD.h \
@@ -153,8 +152,6 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 ..\\..\ArduinoCore\include\libraries\SoftwareSerial/SoftwareSerial.h:
 
 ..\\..\ArduinoCore\include\core/Stream.h:
-
-..\\..\ArduinoCore\include\libraries\adafruit_neopixel-master/Adafruit_NeoPixel.h:
 
 ..\\..\ArduinoCore\include\libraries\spieep/SPIEEP.h:
 

@@ -46,7 +46,6 @@ menu_mgr.d menu_mgr.o: .././menu_mgr.cpp .././menu_mgr.h \
  .././Definitions_settings.h \
  ..\\..\ArduinoCore\include\libraries\SoftwareSerial/SoftwareSerial.h \
  ..\\..\ArduinoCore\include\core/Stream.h \
- ..\\..\ArduinoCore\include\libraries\adafruit_neopixel-master/Adafruit_NeoPixel.h \
  ..\\..\ArduinoCore\include\libraries\spieep/SPIEEP.h \
  .././SpiRam_Extended.h ..\\..\ArduinoCore\include\libraries\SPI/SPI.h \
  .././PROGMEM_labels.h \
@@ -162,8 +161,6 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 ..\\..\ArduinoCore\include\libraries\SoftwareSerial/SoftwareSerial.h:
 
 ..\\..\ArduinoCore\include\core/Stream.h:
-
-..\\..\ArduinoCore\include\libraries\adafruit_neopixel-master/Adafruit_NeoPixel.h:
 
 ..\\..\ArduinoCore\include\libraries\spieep/SPIEEP.h:
 

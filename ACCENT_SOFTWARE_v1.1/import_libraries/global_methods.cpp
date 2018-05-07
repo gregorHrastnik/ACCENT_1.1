@@ -31,14 +31,14 @@
 
 
 //7, 6, 5, 4, 3, 2, 1, 0, 15, 14, 13, 12, 11, 10, 9, 8, 23, 22, 21, 20, 19, 18, 17, 16, 31, 30, 29, 28, 27, 26, 25, 24,
-//#ifdef _RODGERS
-//const unsigned char map_tabela_zecer[64] PROGMEM= {
-//24,25,26,27,28,29,30,31,16,17,18,19,20,21,22,23,8,9,10,11,12,13,14,15,0,1,2,3,4,5,6,7, 39, 38, 37, 36, 35, 34, 33, 32, 47, 46, 45, 44, 43, 42, 41, 40, 55, 54, 53, 52, 51, 50, 49, 48, 63, 62, 61, 60, 59, 58, 57, 56 };
-//const unsigned char map_tabela_Z[64] PROGMEM= {
-//7, 6, 5, 4, 3, 2, 1, 0, 15, 14, 13, 12, 11, 10, 9, 8, 23, 22, 21, 20, 19, 18, 17, 16, 31, 30, 29, 28, 27, 26, 25, 24, 39, 38, 37, 36, 35, 34, 33, 32, 47, 46, 45, 44, 43, 42, 41, 40, 55, 54, 53, 52, 51, 50, 49, 48, 63, 62, 61, 60, 59, 58, 57, 56 };
-//#else
-//const unsigned char map_tabela_zecer[64] PROGMEM = {
-//7, 6, 5, 4, 3, 2, 1, 0, 15, 14, 13, 12, 11, 10, 9, 8, 23, 22, 21, 20, 19, 18, 17, 16, 31, 30, 29, 28, 27, 26, 25, 24, 39, 38, 37, 36, 35, 34, 33, 32, 47, 46, 45, 44, 43, 42, 41, 40, 55, 54, 53, 52, 51, 50, 49, 48, 63, 62, 61, 60, 59, 58, 57, 56 };
+#ifdef _RODGERS
+const unsigned char map_tabela_zecer[64] PROGMEM= {
+24,25,26,27,28,29,30,31,16,17,18,19,20,21,22,23,8,9,10,11,12,13,14,15,0,1,2,3,4,5,6,7, 39, 38, 37, 36, 35, 34, 33, 32, 47, 46, 45, 44, 43, 42, 41, 40, 55, 54, 53, 52, 51, 50, 49, 48, 63, 62, 61, 60, 59, 58, 57, 56 };
+const unsigned char map_tabela_Z[64] PROGMEM= {
+7, 6, 5, 4, 3, 2, 1, 0, 15, 14, 13, 12, 11, 10, 9, 8, 23, 22, 21, 20, 19, 18, 17, 16, 31, 30, 29, 28, 27, 26, 25, 24, 39, 38, 37, 36, 35, 34, 33, 32, 47, 46, 45, 44, 43, 42, 41, 40, 55, 54, 53, 52, 51, 50, 49, 48, 63, 62, 61, 60, 59, 58, 57, 56 };
+#else
+const unsigned char map_tabela_zecer[64] PROGMEM = {
+7, 6, 5, 4, 3, 2, 1, 0, 15, 14, 13, 12, 11, 10, 9, 8, 23, 22, 21, 20, 19, 18, 17, 16, 31, 30, 29, 28, 27, 26, 25, 24, 39, 38, 37, 36, 35, 34, 33, 32, 47, 46, 45, 44, 43, 42, 41, 40, 55, 54, 53, 52, 51, 50, 49, 48, 63, 62, 61, 60, 59, 58, 57, 56 };
 
 //const unsigned char map_tabela_Z[64] PROGMEM = {
 //	7, 6, 5, 4, 3, 2, 1, 0, 15, 14, 13, 12, 11, 10, 9, 8, 23, 22, 21, 20, 19, 18, 17, 16, 31, 30, 29, 28, 27, 26, 25, 24, 39, 38, 37, 36, 35, 34, 33, 32, 47, 46, 45, 44, 43, 42, 41, 40, 55, 54, 53, 52, 51, 50, 49, 48, 63, 62, 61, 60, 59, 58, 57, 56 };
@@ -63,9 +63,9 @@ const unsigned char map_tabela_Z[128] PROGMEM = {
 	, 127, 126, 125, 124, 123, 122, 121, 120
 };
 
+#endif // _RODGERS
 
-
-//const unsigned char map_setter_buttn[77] PROGMEM = {//7, 3, 2, 1, 0, 15, 14, 13, 12, 9, 23, 21, 20, 18, 17, 16, 31, 30, 29, 25, 39, 35, 34, 33, 32, 47, 46, 45, 44, 41, 55, 53, 52, 50, 49, 48, 63, 62, 61, 57, 71, 67, 66, 65, 64, 79, 78, 77, 7, 73, 87, 85, 84, 82, 81, 80, 95, 94, 93, 89, 99, 100, 101, 102, 103, 109, 108, 107, 106, 110, 111, 97, 98, 105, 104, 119, 118 };
+const unsigned char map_setter_buttn[77] PROGMEM = {7, 3, 2, 1, 0, 15, 14, 13, 12, 9, 23, 21, 20, 18, 17, 16, 31, 30, 29, 25, 39, 35, 34, 33, 32, 47, 46, 45, 44, 41, 55, 53, 52, 50, 49, 48, 63, 62, 61, 57, 71, 67, 66, 65, 64, 79, 78, 77, 7, 73, 87, 85, 84, 82, 81, 80, 95, 94, 93, 89, 99, 100, 101, 102, 103, 109, 108, 107, 106, 110, 111, 97, 98, 105, 104, 119, 118 };
 
 //tabela mapiranje tipk klaviatur
 const unsigned char map_key[64] PROGMEM = {
@@ -151,24 +151,24 @@ const unsigned char map_key[64] PROGMEM = {
 //32//76
 //};
 //za seter kombinacije kak si sledijo po vrsti
-//const unsigned char map_setter_num_buttn[] PROGMEM = {//3, 2, 1, 0, 15, 14, 13, 12, 35, 34, 33, 32, 47, 46, 45, 44, 67, 66, 65, 64, 79, 78, 77, 76 };
+const unsigned char map_setter_num_buttn[] PROGMEM = {3, 2, 1, 0, 15, 14, 13, 12, 35, 34, 33, 32, 47, 46, 45, 44, 67, 66, 65, 64, 79, 78, 77, 76 };
 
-//byte get_map_Z_buttn_id(int position)
-//{
-	//return pgm_read_word_near(map_setter_num_buttn + position);
-//}
-//byte get_map_tabela_zecer(int position)
-//{
-	//return pgm_read_word_near(map_tabela_zecer + position);
-//}
+byte get_map_Z_buttn_id(int position)
+{
+	return pgm_read_word_near(map_setter_num_buttn + position);
+}
+byte get_map_tabela_zecer(int position)
+{
+	return pgm_read_word_near(map_tabela_zecer + position);
+}
 byte get_map_tabela_Z(int position)
 {
 	return pgm_read_word_near(map_tabela_Z + position);
 }
-//byte read_map_setter(int position)
-//{
-	//return pgm_read_word_near(map_setter_buttn + position);
-//}
+byte read_map_setter(int position)
+{
+	return pgm_read_word_near(map_setter_buttn + position);
+}
 byte get_key_map(int position)
 {
 	

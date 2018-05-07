@@ -3,13 +3,12 @@
 //#define MODEL_GRANDIOSO_232T_NOT_RGB //svetli
 
 //#define EXCLUDE_SPIRAM
-#define RGB_LED_OUTPUT
-#define RGB_LED_OUTPUT_setter
+//#define RGB_LED_OUTPUT
 #define SAVE_USP_SUB
 #define SAVE_RAM_STOPS
 #define ONE_WIRE_MIDI
 //#define DEBUG_ARRAY_info //za shranjevanje fix kombinacij v PROGMEM
-#define SERIAL_MONITOR_DEBUG //odkomentirano-> Serial monitor
+//#define SERIAL_MONITOR_DEBUG //odkomentirano-> Serial monitor
 //#define TEMP_DEBUG 
 #define INCLUDE_FINAL
 //#define SET_KEYS

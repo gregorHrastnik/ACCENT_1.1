@@ -11,7 +11,9 @@
 #include "Stop_mgr.h"
 #include <Adafruit_NeoPixel.h>
 
-
+#ifdef RGB_LED_OUTPUT
+Adafruit_NeoPixel RGB_STOP1_OUT = Adafruit_NeoPixel(STOP_num, 12, NEO_GRB + NEO_KHZ800);
+#endif
 
 
 #define  GPIO2_PREFER_SPEED    0 //0-> default digitalwrite  1-> fast digitalwrite
@@ -53,20 +55,9 @@ byte mag_out_stop_list_array[20];
 
 void Zecer_stop_mgr::Zecer_stop_mgr_init()
 {
-	 RGB_SETTER_OUT = Adafruit_NeoPixel(ZECER_num, DATA_595_Z, NEO_GRB + NEO_KHZ800);
-
 	//Serial.println("eeprotestm");
 
-#ifdef RGB_LED_OUTPUT_setter
-RGB_SETTER_OUT.begin();
 
-for (int i = 0; i < ZECER_num; i++)
-{
-	RGB_SETTER_OUT.setPixelColor(i, RGB_SETTER_OUT.Color(70,0,0));
-	
-}
-RGB_SETTER_OUT.show();
-#endif
 	exEEPROM.begin_spi(EEPROM_CSPIN);
 	delayMicroseconds(100);
 	exEEPROM.wakeup();
@@ -108,11 +99,10 @@ RGB_SETTER_OUT.show();
 		}
 	}
 	
-	calculate_free_RAM(10);
 	STOP_mgr.Stop_mgr_init(on_stop_EVENT, on_stop_OFF, on_stop_OFF, on_stop_tremulant_ON, on_stop_tremulant_OFF);
 	MIDI_sender.MIDI_mgr_init();	
 	ZECER.Zecer_mgr_init(on_buttn_EVENT);//novi naèin zaradi rama
-calculate_free_RAM(11);
+
 
 	manubri_na_nulo();
 	#ifdef RGB_LED_OUTPUT
@@ -192,32 +182,6 @@ void load_RGB_stop_output(Stop* stop)
 	}
 	RGB_STOP1_OUT.show();
 	#endif
-}
-
-void load_RGB_setter_output(Stop* stop)
-{
-
-//
-//
-	//#ifdef RGB_LED_OUTPUT
-//
-	//for (int i = 0; i < STOP_num; i++)
-	//{
-		//if(STOP_mgr.CHECK_stop_init(get_map_tabela_Z(i))==false)
-		//{
-			//RGB_SETTER_OUT.setPixelColor(i, RGB_SETTER_OUT.Color(0,0,0));
-//
-		//}
-		//else if (STOP_mgr.linked_id(get_map_tabela_Z(i))->GetState() == true)
-		//{
-			//RGB_SETTER_OUT.setPixelColor(i, RGB_SETTER_OUT.Color(EEPROM.read(ADD_menu_b8_theme_R)*2,EEPROM.read(ADD_menu_b8_theme_G)*2,EEPROM.read(ADD_menu_b8_theme_B)*2));
-		//}
-		//else
-		//RGB_SETTER_OUT.setPixelColor(i, RGB_SETTER_OUT.Color(0,0,0)); // Moderately bright green color.
-//
-	//}
-	//RGB_SETTER_OUT.show();
-	//#endif
 }
 
 bool Zecer_stop_mgr::_readBit(byte variable[], int position)
@@ -1072,6 +1036,7 @@ void on_buttn_FIX_COMBINATION_deselect(Button_z* buttn)
 
 void on_buttn_RESET(Button_z* buttn)
 {
+
 
 	if (CRESCENDO_STATE)
 	return;
@@ -3573,7 +3538,6 @@ byte history[3][3] = {
 				
 				//
 			}
-
 			
 			ZECER.read_input();//todo temp izklop
 			counter = 0;

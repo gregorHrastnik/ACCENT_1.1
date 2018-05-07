@@ -48,7 +48,6 @@ SD_mgr.d SD_mgr.o: .././SD_mgr.cpp .././SD_mgr.h \
  .././Definitions_settings.h \
  ..\\..\ArduinoCore\include\libraries\SoftwareSerial/SoftwareSerial.h \
  ..\\..\ArduinoCore\include\core/Stream.h \
- ..\\..\ArduinoCore\include\libraries\adafruit_neopixel-master/Adafruit_NeoPixel.h \
  ..\\..\ArduinoCore\include\libraries\spieep/SPIEEP.h \
  .././SpiRam_Extended.h .././global_methods.h .././Zecer_stop_mgr.h \
  .././Button_Z.h .././MIDI_mgr.h .././Stop_mgr.h .././Zecer_mgr.h \
@@ -175,8 +174,6 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 ..\\..\ArduinoCore\include\libraries\SoftwareSerial/SoftwareSerial.h:
 
 ..\\..\ArduinoCore\include\core/Stream.h:
-
-..\\..\ArduinoCore\include\libraries\adafruit_neopixel-master/Adafruit_NeoPixel.h:
 
 ..\\..\ArduinoCore\include\libraries\spieep/SPIEEP.h:
 

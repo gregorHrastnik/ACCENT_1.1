@@ -12,7 +12,6 @@
 #include "Button_Z.h"
 #include "global_variables.h"
 #include "Stop.h"
-#include "Adafruit_NeoPixel.h"
 
 
 //void send_tremulant_key(int key, Stops *stop_in, bool on_off, int manual, bool force_skip_check);
@@ -66,13 +65,6 @@ class Zecer_stop_mgr
 
 
 	public:
-	#ifdef RGB_LED_OUTPUT
-	//Adafruit_NeoPixel RGB_STOP1_OUT = Adafruit_NeoPixel(STOP_num, 12, NEO_GRB + NEO_KHZ800);
-	
-	#endif
-//Adafruit_NeoPixel RGB_SETTER_OUT;// = Adafruit_NeoPixel(STOP_num, DATA_595_Z, NEO_GRB + NEO_KHZ800);
-
-	
 	bool allow_refresh=true;
 	int current_combination = 0;
 	//Zecer_stop_mgr();
